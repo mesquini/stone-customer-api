@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  redis:
+    container_name: redis_customer
+    image: redis:alpine
+    command: redis-server --requirepass docker
+    ports:
+      - 6379:6379
+  app:
+    build: .
+    container_name: app_customer
+    command: yarn start
+    ports:
+      - 3333:3333
+    environment:
+      - NODE_ENV=stg
+      - PORT=3333
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
+    volumes:
+      - ./src/
+      # - nodemodules:/node_modules
+    links:
+      - redis
+    depends_on:
+      - redis
