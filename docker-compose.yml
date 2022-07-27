@@ -4,7 +4,6 @@ services:
   redis:
     container_name: redis_customer
     image: redis:alpine
-    command: redis-server --requirepass docker
     ports:
       - 6379:6379
   app:
@@ -16,11 +15,11 @@ services:
     environment:
       - NODE_ENV=stg
       - PORT=3333
-      - REDIS_HOST=localhost
-      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379
+      - KEYCLOAK_TOKEN=https://accounts.seguros.vitta.com.br/auth/realms/careers/protocol/openid-connect/token
+      - KEYCLOAK_USERINFO=https://accounts.seguros.vitta.com.br/auth/realms/careers/protocol/openid-connect/userinfo
     volumes:
-      - ./src/
-      # - nodemodules:/node_modules
+      - /www/stone-customer-api
     links:
       - redis
     depends_on:
