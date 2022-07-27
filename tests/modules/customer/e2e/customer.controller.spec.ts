@@ -6,7 +6,7 @@ import { AppModule } from '../.../../../../../src/app.module';
 import { JwtAuthMiddleware } from '@common/auth/services/jwt-auth.middleware.service';
 import DITokens from '@common/enums/DITokens';
 
-jest.setTimeout(50000);
+jest.setTimeout(1000);
 
 let app: INestApplication;
 
@@ -50,8 +50,8 @@ describe('Customer', () => {
       });
   });
 
-  describe('[GET] /customers/:id', () => {
-    it(`Should return customer`, () => {
+  describe('[GET] /customers/:id', async () => {
+    it(`Should return customer`, async () => {
       const id = customer1.id;
 
       return request(app.getHttpServer())
@@ -75,8 +75,8 @@ describe('Customer', () => {
     });
   });
 
-  describe('[POST] /customers', () => {
-    it('Should return new customer', () => {
+  describe('[POST] /customers', async () => {
+    it('Should return new customer', async () => {
       return request(app.getHttpServer())
         .post(`/customers`)
         .send({
@@ -93,8 +93,8 @@ describe('Customer', () => {
     });
   });
 
-  describe('[PATCH] /customers/:id', () => {
-    it('Should return updated customer', () => {
+  describe('[PATCH] /customers/:id', async () => {
+    it('Should return updated customer', async () => {
       const data = {
         id: customer1.id,
         name: 'meu novo nome',
@@ -113,7 +113,7 @@ describe('Customer', () => {
         });
     });
 
-    it('Should not updated customer when id is conflict', () => {
+    it('Should not updated customer when id is conflict', async () => {
       const data = {
         id: customer1.id,
         name: 'meu novo nome',
