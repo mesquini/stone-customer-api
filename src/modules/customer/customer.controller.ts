@@ -1,4 +1,6 @@
+import { JwtAuth } from '@common/auth/decorators/jwt-auth.decorator';
 import DITokens from '@common/enums/DITokens';
+import { ConflictError } from '@common/errors/conflict.error';
 import {
   Body,
   Controller,
@@ -18,6 +20,7 @@ import {
 import { CreateCustomerDto } from './domain/dtos/create-customer.dto';
 import UpdateCustomerDto from './domain/dtos/update-customer.dto';
 import { CustomerEntity } from './domain/entities/customer.entity';
+import CustomerErrors from './domain/errors/customer.error';
 import ICreatorCustomerService from './services/interfaces/icreator-customer.service';
 import IGetterCustomerService from './services/interfaces/igetter-customer.service';
 import IUpdaterCustomerService from './services/interfaces/iupdater-customer.service';
@@ -25,6 +28,7 @@ import IUpdaterCustomerService from './services/interfaces/iupdater-customer.ser
 @Controller('customers')
 @ApiTags('Customer')
 @ApiBearerAuth()
+@JwtAuth()
 export default class CustomerController {
   constructor(
     @Inject(DITokens.CustomerCreatorService)
@@ -53,6 +57,9 @@ export default class CustomerController {
     @Param('id') id: string,
     @Body() data: UpdateCustomerDto,
   ): Promise<CustomerEntity> {
+    if (data.id !== id)
+      throw new ConflictError(CustomerErrors.CUSTOMER_CONFLICT_ID);
+
     return this.customerUpdaterService.update({ id, ...data });
   }
 

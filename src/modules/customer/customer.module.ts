@@ -6,9 +6,10 @@ import CustomerDatabaseDao from './domain/repositories/customer.database.dao';
 import CreatorCustomerService from './services/creator-customer.service';
 import GetterCustomerService from './services/getter-customer.service';
 import UpdaterCustomerService from './services/updater-customer.service';
+import { AuthMiddlewareModule } from '@common/auth/auth.middleware.module';
 
 @Module({
-  imports: [CustomerModule],
+  imports: [AuthMiddlewareModule, CustomerModule],
   controllers: [CustomerController],
   providers: [
     {
