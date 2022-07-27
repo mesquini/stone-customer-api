@@ -17,7 +17,8 @@ export class OperationalErrorFilter implements ExceptionFilter {
     .set(ErrorType.DataValidationError, HttpStatus.BAD_REQUEST)
     .set(ErrorType.MissingDataError, HttpStatus.CONFLICT)
     .set(ErrorType.NotFoundError, HttpStatus.NOT_FOUND)
-    .set(ErrorType.UnauthorizedError, HttpStatus.UNAUTHORIZED);
+    .set(ErrorType.UnauthorizedError, HttpStatus.UNAUTHORIZED)
+    .set(ErrorType.ConflictError, HttpStatus.CONFLICT);
 
   catch(error: OperationalError | PipeValidationError, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
