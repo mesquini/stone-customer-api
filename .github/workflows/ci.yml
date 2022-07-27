@@ -1,0 +1,24 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  ci:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 16.13.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.0
+      - name: Installing Dependencies
+        run: npm install
+      - name: Running Unit Tests
+        run: npm run test:cov
+      - name: Running Lint
+        run: npm run lint

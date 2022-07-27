@@ -3,24 +3,25 @@ version: "3"
 services:
   redis:
     container_name: redis_customer
+    restart: always
     image: redis:alpine
-    command: redis-server --requirepass docker
     ports:
       - 6379:6379
   app:
     build: .
     container_name: app_customer
-    command: yarn start
+    restart: always
+    command: yarn start:dev
     ports:
       - 3333:3333
     environment:
       - NODE_ENV=stg
       - PORT=3333
-      - REDIS_HOST=localhost
-      - REDIS_PORT=6379
+      - REDIS_URL=redis://redis:6379
+      - KEYCLOAK_TOKEN=https://accounts.seguros.vitta.com.br/auth/realms/careers/protocol/openid-connect/token
+      - KEYCLOAK_USERINFO=https://accounts.seguros.vitta.com.br/auth/realms/careers/protocol/openid-connect/userinfo
     volumes:
-      - ./src/
-      # - nodemodules:/node_modules
+      - /www/stone-customer-api
     links:
       - redis
     depends_on:

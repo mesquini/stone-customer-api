@@ -1,27 +1,18 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true, });
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.use(helmet());
-  app.connectMicroservice({
-    transport: Transport.REDIS,
-    options: {
-      host: 'localhost',
-      port: 6379,
-    },
-  })
 
   const config = new DocumentBuilder()
     .setTitle('Customer API')
     .setDescription('')
     .setVersion(process.env.npm_package_version)
-    .addTag('Auth')
     .addTag('Customer')
     .addBearerAuth()
     .build();
