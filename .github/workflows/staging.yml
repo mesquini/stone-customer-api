@@ -1,0 +1,59 @@
+# name: Staging Workflow
+
+# on:
+#   push:
+#     branches:
+#       - staging
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - name: Code Checkout
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - name: Use Node.js 16.13.0
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16.13.0
+#       - name: Installing Dependencies
+#         run: npm install
+#       - name: Running Unit Tests
+#         run: npm run test:cov
+#       - name: Running Lint
+#         run: npm run lint
+#       - name: Generate build
+#         run: npm run build
+#       - name: Share artifact inside workflow
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: 'artifact-${{ github.SHA }}'
+#           path: |
+#             dist
+#             package.json
+#             prisma
+#             tsconfig.build.json
+#             tsconfig.json
+
+#   deploy:
+#     runs-on: ubuntu-18.04
+#     needs: build
+#     steps:
+#       - name: Get the last artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: 'artifact-${{ github.SHA }}'
+#       - name: Initialize Git
+#         run: git init
+#       - name: Deploy to Heroku
+#         uses: akhileshns/heroku-deploy@v3.12.12
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+#           heroku_email: ${{secrets.HEROKU_EMAIL}}
+#           procfile: 'web: npm run start:prod'
+#           healthcheck: 'https://parkoff-api.herokuapp.com/'
+#           rollbackonhealthcheckfailed: true
+#       - run: heroku config:set NODE_MODULES_CACHE=false
+
