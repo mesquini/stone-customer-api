@@ -10,7 +10,7 @@ services:
   app:
     build: .
     container_name: app_customer
-    command: yarn start
+    command: yarn start:dev
     ports:
       - 3333:3333
     environment:
