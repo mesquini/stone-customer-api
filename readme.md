@@ -9,7 +9,7 @@
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;
 </p>
 
-![Count commits](https://badgen.net/github/commits/mesquini/stone-customer-api)
+![Count commits](https://badgen.net/github/commits/mesquini/stone-customer-api/master)
 
 <p align="center">
   <a href="https://insomnia.rest/run/?label=customer-api&uri=https%3A%2F%2Fgithub.com%2Fmesquini%2Fstone-customer-api%2Fblob%2Fdev%2Fcustomer-api.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
