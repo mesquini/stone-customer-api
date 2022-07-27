@@ -9,6 +9,8 @@
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;
 </p>
 
+![Count commits](https://badgen.net/github/commits/mesquini/stone-customer-api)
+
 <p align="center">
   <a href="https://insomnia.rest/run/?label=customer-api&uri=https%3A%2F%2Fgithub.com%2Fmesquini%2Fstone-customer-api%2Fblob%2Fdev%2Fcustomer-api.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
@@ -43,7 +45,7 @@
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/mesquini/proffy
+$ git clone https://github.com/mesquini/stone-customer-api
 
 > cd stone-customer-api
 
@@ -53,6 +55,9 @@ $ git clone https://github.com/mesquini/proffy
 
 # run API container
 > docker-compose up
+
+# run tests
+> yarn test
 ```
 
 ---

@@ -15,6 +15,7 @@ module.exports = {
     '!src/**/*.interface.ts',
     '!src/**/*.errors.ts',
     '!src/**/*.module.ts',
+    '!src/main.ts',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
