@@ -6,8 +6,6 @@ import { AppModule } from '../.../../../../../src/app.module';
 import { JwtAuthMiddleware } from '@common/auth/services/jwt-auth.middleware.service';
 import DITokens from '@common/enums/DITokens';
 
-jest.setTimeout(1000);
-
 let app: INestApplication;
 
 describe('Customer', () => {
@@ -50,7 +48,7 @@ describe('Customer', () => {
       });
   });
 
-  describe('[GET] /customers/:id', async () => {
+  describe('[GET] /customers/:id', () => {
     it(`Should return customer`, async () => {
       const id = customer1.id;
 
@@ -75,7 +73,7 @@ describe('Customer', () => {
     });
   });
 
-  describe('[POST] /customers', async () => {
+  describe('[POST] /customers', () => {
     it('Should return new customer', async () => {
       return request(app.getHttpServer())
         .post(`/customers`)
@@ -93,7 +91,7 @@ describe('Customer', () => {
     });
   });
 
-  describe('[PATCH] /customers/:id', async () => {
+  describe('[PATCH] /customers/:id', () => {
     it('Should return updated customer', async () => {
       const data = {
         id: customer1.id,
