@@ -19,7 +19,7 @@ describe('Creator customer', () => {
     jest.clearAllMocks();
   });
 
-  it('Should be create new customer', async () => {
+  it('Should create new customer', async () => {
     const data = {
       name: customer1.name,
       document: customer1.document,

@@ -19,7 +19,7 @@ describe('Updater customer', () => {
     jest.clearAllMocks();
   });
 
-  it('Should be update one customer by id', async () => {
+  it('Should update one customer by id', async () => {
     jest.spyOn(customerDaoMock, 'update').mockResolvedValue(customer1);
 
     await expect(updaterCustomerService.update(customer1)).resolves.toEqual(
