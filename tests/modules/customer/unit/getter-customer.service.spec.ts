@@ -20,7 +20,7 @@ describe('Getter customer', () => {
     jest.clearAllMocks();
   });
 
-  it('Should be get one customer by id', async () => {
+  it('Should get one customer by id', async () => {
     jest.spyOn(customerDaoMock, 'getById').mockResolvedValue(customer1);
 
     await expect(getterCustomerService.getById(customer1.id)).resolves.toEqual(
@@ -28,7 +28,7 @@ describe('Getter customer', () => {
     );
   });
 
-  it('Should not found customer', async () => {
+  it('Should not find customer', async () => {
     jest.spyOn(customerDaoMock, 'getById').mockResolvedValue(null as any);
 
     await expect(
